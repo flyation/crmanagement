@@ -62,6 +62,7 @@ public class ReservationService {
         schedules.forEach(System.out::println);
         Page pages = new Page(page, size);
         pages.setRecords(schedules);
+        pages.setTotal(schedules.size());
         return pages;
     }
 }
