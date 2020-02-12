@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
+/**
+ * 教室信息controller
+ */
 @RestController
 @CrossOrigin
 @RequestMapping("/classroom")

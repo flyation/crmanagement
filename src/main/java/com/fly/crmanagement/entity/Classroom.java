@@ -19,7 +19,7 @@ public class Classroom {
     private String building;    //教学楼
     private int floor;          //所在楼层
     private int capacity;       //教室容量
-    private int type;           //教室类型
+    private String type;           //教室类型
     @TableField("is_repaired")
     private int repair;     //是否报修
 }

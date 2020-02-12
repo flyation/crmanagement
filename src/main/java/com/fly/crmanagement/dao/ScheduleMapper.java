@@ -4,13 +4,15 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fly.crmanagement.entity.Classroom;
+import com.fly.crmanagement.entity.Schedule;
 import org.apache.ibatis.annotations.Select;
 
 /**
- * 教室信息mapper
+ * 教室日程mapper
  */
-public interface ClassroomMapper extends BaseMapper<Classroom> {
+public interface ScheduleMapper extends BaseMapper<Schedule> {
 
-    @Select("select *,is_repaired AS repair from classroom")
-    IPage<Classroom> findAll_Page(Page page);
+    @Select("select * from schedule")
+    IPage<Schedule> getPageList(Page page);
+
 }

@@ -4,11 +4,12 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fly.crmanagement.entity.Classroom;
+import com.fly.crmanagement.entity.Reservation;
 import org.apache.ibatis.annotations.Select;
 
 /**
- * 教室生成器
+ * 预约教室mapper
  */
-public interface ClassroomFactoryMapper extends BaseMapper<Classroom> {
+public interface ReservationMapper extends BaseMapper<Reservation> {
 
 }

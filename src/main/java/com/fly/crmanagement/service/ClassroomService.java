@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * 教室信息service
+ */
 @Service
 @Transactional
 public class ClassroomService {
