@@ -3,20 +3,15 @@ package com.fly.crmanagement.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.fly.crmanagement.dao.ClassroomMapper;
-import com.fly.crmanagement.dao.ReservationMapper;
+import com.fly.crmanagement.dao.ReserveMapper;
 import com.fly.crmanagement.dao.ScheduleMapper;
-import com.fly.crmanagement.entity.Classroom;
-import com.fly.crmanagement.entity.Reservation;
-import com.fly.crmanagement.entity.ReservationVO;
+import com.fly.crmanagement.entity.ReserveRecord;
+import com.fly.crmanagement.entity.ReserveRequest;
 import com.fly.crmanagement.entity.Schedule;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PutMapping;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -24,13 +19,15 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class ReservationService {
+public class ReserveService {
 
     @Resource
     private ScheduleMapper scheduleMapper;
 
-    public IPage<Schedule> getPageList(int page, int size, ReservationVO vo) {
-        System.out.println("service...");
+    @Resource
+    private ReserveMapper reserveMapper;
+
+    public IPage<Schedule> getPageList(int page, int size, ReserveRequest vo) {
         // 无查询条件时查询所有
         if (null == vo.getDate()) {
             return scheduleMapper.getPageList(new Page(page, size));
@@ -64,5 +61,9 @@ public class ReservationService {
         pages.setRecords(schedules);
         pages.setTotal(schedules.size());
         return pages;
+    }
+
+    public void reserve(ReserveRecord reserve) {
+        reserveMapper.insert(reserve);
     }
 }

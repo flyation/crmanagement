@@ -26,8 +26,6 @@ public class ClassroomFactory {
 
     /**
      * 添加教室
-     * @param num
-     * @return
      */
     @PutMapping("/{num}")
     public String save(@PathVariable("num") int num) {
@@ -46,7 +44,6 @@ public class ClassroomFactory {
 
     /**
      * 添加日程
-     * @return
      */
     @PostMapping("/add")
     public String addSchedule() {
@@ -61,10 +58,10 @@ public class ClassroomFactory {
             scheduleNew.setType(classroom.getType());
             scheduleNew.setCapacity(classroom.getCapacity());
 //            scheduleNew.setDate(LocalDate.of(2020, 3, 7));
-            scheduleNew.setCourse1(new Random().nextInt(2));
-            scheduleNew.setCourse2(new Random().nextInt(2));
-            scheduleNew.setCourse3(new Random().nextInt(2));
-            scheduleNew.setCourse4(new Random().nextInt(2));
+            scheduleNew.setCourse1(new Random().nextInt(2) == 1);
+            scheduleNew.setCourse2(new Random().nextInt(2) == 1);
+            scheduleNew.setCourse3(new Random().nextInt(2) == 1);
+            scheduleNew.setCourse4(new Random().nextInt(2) == 1);
             scheduleMapper.insert(scheduleNew);
             count++;
         }

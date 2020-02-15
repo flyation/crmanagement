@@ -1,0 +1,25 @@
+/login
+return "{\n" +
+        "    \"code\": 20000,\n" +
+        "    \"data\": {\n" +
+        "        \"token\": \"admin\"\n" +
+        "    }\n" +
+        "}";
+
+/info
+return "{\n" +
+        "    \"code\": 20000,\n" +
+        "    \"data\": {\n" +
+        "        \"roles\": [\n" +
+        "            \"admin\"\n" +
+        "        ],\n" +
+        "        \"name\": \"adminFly\",\n" +
+        "        \"avatar\": \"https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif\"\n" +
+        "    }\n" +
+        "}";
+
+/logout
+return "{\n" +
+        "    \"code\": 20000,\n" +
+        "    \"data\": \"success\"\n" +
+        "}";

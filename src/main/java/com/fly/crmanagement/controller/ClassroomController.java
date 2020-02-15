@@ -23,7 +23,6 @@ public class ClassroomController {
 
     /**
      * 查询所有
-     * @return
      */
     @GetMapping
     public Result findAll() {
@@ -32,9 +31,6 @@ public class ClassroomController {
 
     /**
      * 带分页查询所有
-     * @param page
-     * @param size
-     * @return
      */
     @GetMapping(value = "/all/{page}/{size}")
     public Result findAll_Page(@PathVariable("page") int page, @PathVariable("size") int size) {
@@ -44,8 +40,6 @@ public class ClassroomController {
 
     /**
      * 按id查询
-     * @param cid
-     * @return
      */
     @GetMapping(value = "/{id}")
     public Result findById(@PathVariable("id") String cid) {
@@ -54,8 +48,6 @@ public class ClassroomController {
 
     /**
      * 新增
-     * @param classroom
-     * @return
      */
     @PostMapping
     public Result save(@RequestBody Classroom classroom) {
@@ -66,9 +58,6 @@ public class ClassroomController {
 
     /**
      * 修改
-     * @param id
-     * @param classroom
-     * @return
      */
     @PutMapping(value = "/{id}")
     public Result update(@PathVariable("id") String id, @RequestBody Classroom classroom) {
@@ -78,8 +67,6 @@ public class ClassroomController {
 
     /**
      * 删除单个
-     * @param id
-     * @return
      */
     @DeleteMapping(value = "/{id}")
     public Result deleteById(@PathVariable("id") String id) {
