@@ -11,7 +11,7 @@ import java.util.Date;
  * 预约条件VO
  */
 @Data
-public class ReserveRequest {
+public class Reserve {
     @TableId(type = IdType.AUTO)
     private Integer id;         //主键
     private String uid;         //用户id

@@ -5,11 +5,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fly.crmanagement.dao.ReserveMapper;
 import com.fly.crmanagement.dao.ScheduleMapper;
-import com.fly.crmanagement.entity.ReserveRecord;
-import com.fly.crmanagement.entity.ReserveRequest;
-import com.fly.crmanagement.entity.Schedule;
+import com.fly.crmanagement.entity.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -27,10 +26,10 @@ public class ReserveService {
     @Resource
     private ReserveMapper reserveMapper;
 
-    public IPage<Schedule> getPageList(int page, int size, ReserveRequest vo) {
+    public IPage<Schedule> getScheduleList(int page, int size, Reserve vo) {
         // 无查询条件时查询所有
         if (null == vo.getDate()) {
-            return scheduleMapper.getPageList(new Page(page, size));
+            return scheduleMapper.getScheduleList(new Page(page, size));
         }
 
         // 有查询条件时根据条件查询空闲教室
@@ -63,7 +62,22 @@ public class ReserveService {
         return pages;
     }
 
-    public void reserve(ReserveRecord reserve) {
+    public void reserve(Record reserve) {
         reserveMapper.insert(reserve);
+    }
+
+    public IPage<RecordClassroom> getUserRecordList(int page, int size, int uid) {
+        uid = 2200;
+        IPage<RecordClassroom> list = reserveMapper.getUserRecordList(new Page(page, size), uid);
+        return list;
+    }
+
+    public boolean cancel(int id) {
+        QueryWrapper<Record> wrapper = new QueryWrapper<>();
+        wrapper.eq("id", id);
+        Record record = new Record();
+        record.setCancel(true);
+        int update = reserveMapper.update(record, wrapper);
+        return update == 1;
     }
 }

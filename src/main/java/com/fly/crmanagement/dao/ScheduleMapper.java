@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fly.crmanagement.entity.Schedule;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 /**
@@ -12,6 +13,5 @@ import org.apache.ibatis.annotations.Select;
 public interface ScheduleMapper extends BaseMapper<Schedule> {
 
     @Select("select * from schedule")
-    IPage<Schedule> getPageList(Page page);
-
+    IPage<Schedule> getScheduleList(Page page);
 }
