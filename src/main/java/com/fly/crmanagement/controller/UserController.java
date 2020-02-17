@@ -1,7 +1,7 @@
 package com.fly.crmanagement.controller;
 
-import com.fly.crmanagement.entity.Result;
-import com.fly.crmanagement.entity.StatusCode;
+import com.fly.crmanagement.entity.common.Result;
+import com.fly.crmanagement.entity.common.StatusCode;
 import com.fly.crmanagement.entity.User;
 import com.fly.crmanagement.entity.UserDTO;
 import com.fly.crmanagement.service.UserService;

@@ -11,6 +11,6 @@ import org.apache.ibatis.annotations.Select;
  */
 public interface ClassroomMapper extends BaseMapper<Classroom> {
 
-    @Select("select *,is_repaired AS repair from classroom")
+    @Select("SELECT * FROM classroom")
     IPage<Classroom> findAll_Page(Page page);
 }

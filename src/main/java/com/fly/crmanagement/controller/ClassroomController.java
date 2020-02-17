@@ -2,9 +2,9 @@ package com.fly.crmanagement.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.fly.crmanagement.entity.Classroom;
-import com.fly.crmanagement.entity.PageResult;
-import com.fly.crmanagement.entity.Result;
-import com.fly.crmanagement.entity.StatusCode;
+import com.fly.crmanagement.entity.common.PageResult;
+import com.fly.crmanagement.entity.common.Result;
+import com.fly.crmanagement.entity.common.StatusCode;
 import com.fly.crmanagement.service.ClassroomService;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,8 +34,8 @@ public class ClassroomController {
      */
     @GetMapping(value = "/all/{page}/{size}")
     public Result findAll_Page(@PathVariable("page") int page, @PathVariable("size") int size) {
-        IPage<Classroom> pageData = classroomService.findAll_Page(page, size);
-        return new Result(true, StatusCode.OK, "查询成功", new PageResult<Classroom>(pageData.getTotal(), pageData.getRecords()));
+        IPage<Classroom> pages = classroomService.findAll_Page(page, size);
+        return new Result(true, StatusCode.OK, "查询成功", new PageResult<Classroom>(pages.getTotal(), pages.getRecords()));
     }
 
     /**

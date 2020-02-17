@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @TableName("reserve")
-public class RecordClassroom {
+public class RecordVO {
     @TableId(type = IdType.AUTO)
     private Integer id;         //主键
     private String uid;         //用户id
@@ -25,12 +25,16 @@ public class RecordClassroom {
     private Boolean course4;    //第4节课
     private String reason;      //申请原因
     private LocalDateTime time; //下单时间
-    private String check;       //审核状态(未审核，已通过，已拒绝)
+    private Boolean cancel;     //是否撤销
+    private String checkd;       //审核状态(未审核，已通过，已拒绝)
 
     private String name;        //教室名
     private String building;    //教学楼
-    private int floor;          //所在楼层
-    private int capacity;       //教室容量
+    private Integer floor;      //所在楼层
+    private Integer capacity;   //教室容量
     private String type;        //教室类型
-    private int repair;         //是否报修
+    private Boolean repair;     //是否报修
+
+    private String username;    //用户名
+
 }

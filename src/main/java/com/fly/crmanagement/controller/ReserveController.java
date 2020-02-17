@@ -2,6 +2,9 @@ package com.fly.crmanagement.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.fly.crmanagement.entity.*;
+import com.fly.crmanagement.entity.common.PageResult;
+import com.fly.crmanagement.entity.common.Result;
+import com.fly.crmanagement.entity.common.StatusCode;
 import com.fly.crmanagement.service.ReserveService;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,11 +22,11 @@ public class ReserveController {
     private ReserveService reserveService;
 
     /**
-     * 带分页查询教室日程(有无查询条 ？ 根据条件查询空闲教室 ：查询所有)
+     * 带分页查询教室日程
      */
     @PostMapping(value = "/search/{page}/{size}")
-    public Result getScheduleList(@PathVariable("page") int page, @PathVariable("size") int size, @RequestBody Reserve vo) {
-        IPage<Schedule> pageData = reserveService.getScheduleList(page, size, vo);
+    public Result getScheduleList(@PathVariable("page") int page, @PathVariable("size") int size, @RequestBody ReserveVO vo) {
+        IPage<ScheduleVO> pageData = reserveService.getScheduleList(page, size, vo);
         return new Result(true, StatusCode.OK, "搜索成功", new PageResult<>(pageData.getTotal(), pageData.getRecords()));
     }
 
@@ -31,9 +34,8 @@ public class ReserveController {
      * 提交预约
      */
     @PostMapping(value = "/apply")
-    public Result reserve(@RequestBody Record reserve) {
-        System.out.println("reserve = " + reserve);
-        reserveService.reserve(reserve);
+    public Result reserve(@RequestBody Record record) {
+        reserveService.reserve(record);
         return new Result(true, StatusCode.OK, "提交成功，请等待审核");
     }
 
@@ -41,9 +43,9 @@ public class ReserveController {
      * 带分页查询用户预约记录
      */
     @GetMapping(value = "/record/{uid}/{page}/{size}")
-    public Result getUserReserveList(@PathVariable("page") int page, @PathVariable("size") int size, @PathVariable("uid") int uid) {
-        IPage<RecordClassroom> pageData = reserveService.getUserRecordList(page, size, uid);
-        return new Result(true, StatusCode.OK, "查询成功", new PageResult<>(pageData.getTotal(), pageData.getRecords()));
+    public Result getRecordList(@PathVariable("page") int page, @PathVariable("size") int size, @PathVariable("uid") int uid) {
+        IPage<RecordVO> pages = reserveService.getRecordList(page, size, uid);
+        return new Result(true, StatusCode.OK, "查询成功", new PageResult<>(pages.getTotal(), pages.getRecords()));
     }
 
     /**

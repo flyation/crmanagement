@@ -1,7 +1,7 @@
 package com.fly.crmanagement.controller;
 
-import com.fly.crmanagement.entity.Result;
-import com.fly.crmanagement.entity.StatusCode;
+import com.fly.crmanagement.entity.common.Result;
+import com.fly.crmanagement.entity.common.StatusCode;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

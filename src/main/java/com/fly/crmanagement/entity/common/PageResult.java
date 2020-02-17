@@ -1,4 +1,4 @@
-package com.fly.crmanagement.entity;
+package com.fly.crmanagement.entity.common;
 
 import lombok.Data;
 

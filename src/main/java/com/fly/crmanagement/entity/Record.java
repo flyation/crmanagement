@@ -25,6 +25,6 @@ public class Record {
     private Boolean course4;    //第4节课
     private String reason;      //申请原因
     private LocalDateTime time; //下单时间
-    private Boolean cancel;      //是否撤销
-    private String check;       //审核状态(未审核，已通过，已拒绝)
+    private Boolean cancel;     //是否撤销
+    private String checkd;       //审核状态(未审核，已通过，已拒绝)
 }
