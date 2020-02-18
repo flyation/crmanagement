@@ -3,8 +3,10 @@ package com.fly.crmanagement.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -24,9 +26,15 @@ public class RecordVO {
     private Boolean course3;    //第3节课
     private Boolean course4;    //第4节课
     private String reason;      //申请原因
-    private LocalDateTime time; //下单时间
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private LocalDateTime time1; //下单时间
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private LocalDateTime time2; //审核时间
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private LocalDateTime time3; //撤销时间
+    private String checked;       //审核状态(待审，通过，否决)
     private Boolean cancel;     //是否撤销
-    private String checkd;       //审核状态(未审核，已通过，已拒绝)
+
 
     private String name;        //教室名
     private String building;    //教学楼

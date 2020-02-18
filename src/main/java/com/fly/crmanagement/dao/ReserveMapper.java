@@ -17,7 +17,8 @@ public interface ReserveMapper extends BaseMapper<Record> {
 
     @Select("SELECT * FROM reserve "
             + "LEFT JOIN classroom ON reserve.cid = classroom.id "
-            + "WHERE uid = #{uid} AND cancel = 0")
+            + "WHERE uid = #{uid} "
+            + "ORDER BY time1 DESC")
     IPage<RecordVO> getRecordList(Page page, @Param("uid")int uid);
 
     @Select("<script>"
@@ -39,6 +40,6 @@ public interface ReserveMapper extends BaseMapper<Record> {
     @Select("SELECT * FROM reserve t1 "
             + "LEFT JOIN classroom t2 ON t1.cid = t2.id "
             + "LEFT JOIN user t3 ON t1.uid = t3.id "
-            + "WHERE `checkd` = '待审'")
+            + "WHERE checked = '待审' AND cancel = 0")
     IPage<RecordVO> getReserveList(Page page);
 }

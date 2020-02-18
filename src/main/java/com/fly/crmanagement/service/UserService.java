@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fly.crmanagement.dao.UserMapper;
 import com.fly.crmanagement.entity.User;
 import com.fly.crmanagement.entity.UserDTO;
-import com.fly.crmanagement.util.UserUtil;
+import com.fly.crmanagement.util.FlyUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,7 +33,7 @@ public class UserService {
         wrapper.eq("token", token);
         User user = userMapper.selectOne(wrapper);
 
-        UserDTO userDTO = UserUtil.User2UserDTO(user);
+        UserDTO userDTO = FlyUtil.User2UserDTO(user);
         return userDTO;
     }
 }
