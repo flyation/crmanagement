@@ -33,4 +33,5 @@ public class Record {
     private LocalDateTime time2; //审核时间
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime time3; //撤销时间
+    private Boolean type;        //预约类型（0教室，1座位）
 }

@@ -22,11 +22,20 @@ public class ReserveController {
     private ReserveService reserveService;
 
     /**
-     * 带分页查询教室日程
+     * 带分页查询教室日程(预约教室)
      */
-    @PostMapping(value = "/search/{page}/{size}")
-    public Result getScheduleList(@PathVariable("page") int page, @PathVariable("size") int size, @RequestBody ReserveVO vo) {
-        IPage<ScheduleVO> pageData = reserveService.getScheduleList(page, size, vo);
+    @PostMapping(value = "/searchRoom/{page}/{size}")
+    public Result getScheduleRoomList(@PathVariable("page") int page, @PathVariable("size") int size, @RequestBody ReserveVO vo) {
+        IPage<ScheduleVO> pageData = reserveService.getScheduleRoomList(page, size, vo);
+        return new Result(true, StatusCode.OK, "搜索成功", new PageResult<>(pageData.getTotal(), pageData.getRecords()));
+    }
+
+    /**
+     * 带分页查询教室日程(预约座位)
+     */
+    @PostMapping(value = "/searchSeat/{page}/{size}")
+    public Result getScheduleSeatList(@PathVariable("page") int page, @PathVariable("size") int size, @RequestBody ReserveVO vo) {
+        IPage<ScheduleVO> pageData = reserveService.getScheduleSeatList(page, size, vo);
         return new Result(true, StatusCode.OK, "搜索成功", new PageResult<>(pageData.getTotal(), pageData.getRecords()));
     }
 
@@ -34,17 +43,26 @@ public class ReserveController {
      * 提交预约
      */
     @PostMapping(value = "/apply")
-    public Result reserve(@RequestBody Record record) {
-        reserveService.reserve(record);
+    public Result reserve(@RequestBody Record record, @RequestHeader("X-token") String token) {
+        reserveService.reserve(record, token);
         return new Result(true, StatusCode.OK, "提交成功，请等待审核");
+    }
+
+    /**
+     * 预约座位
+     */
+    @PostMapping(value = "/applySeat")
+    public Result reserveSeat(@RequestBody Record record, @RequestHeader("X-token") String token) {
+        reserveService.reserveSeat(record, token);
+        return new Result(true, StatusCode.OK, "预约座位成功");
     }
 
     /**
      * 带分页查询用户预约记录
      */
-    @GetMapping(value = "/record/{uid}/{page}/{size}")
-    public Result getRecordList(@PathVariable("page") int page, @PathVariable("size") int size, @PathVariable("uid") int uid) {
-        IPage<RecordVO> pages = reserveService.getRecordList(page, size, uid);
+    @GetMapping(value = "/record/{page}/{size}")
+    public Result getRecordList(@PathVariable("page") int page, @PathVariable("size") int size, @RequestHeader("X-token") String token) {
+        IPage<RecordVO> pages = reserveService.getRecordList(page, size, token);
         return new Result(true, StatusCode.OK, "查询成功", new PageResult<>(pages.getTotal(), pages.getRecords()));
     }
 

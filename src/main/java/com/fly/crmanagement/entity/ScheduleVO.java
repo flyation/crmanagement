@@ -16,11 +16,13 @@ public class ScheduleVO {
     private Boolean course2;    //第2节课
     private Boolean course3;    //第3节课
     private Boolean course4;    //第4节课
+    private Integer number1;    //第1节课人数
+    private Integer number2;    //第2节课人数
+    private Integer number3;    //第3节课人数
+    private Integer number4;    //第4节课人数
 
     private String name;        //教室名
     private String building;    //教学楼
     private Integer floor;      //教室楼层
     private Integer capacity;   //教室容量
-    private String type;        //教室类型
-
 }

@@ -23,9 +23,9 @@ public class UserController {
     @PostMapping("/login")
     public Result login(@RequestBody User user) {
         System.out.println("login..." + user);
-        User userInDB = userService.login(user);
-        if (null != userInDB) {
-            return new Result(true, StatusCode.OK, "验证成功", userInDB);
+        UserDTO userDTO = userService.login(user);
+        if (null != userDTO) {
+            return new Result(true, StatusCode.OK, "验证成功", userDTO);
         } else {
             return new Result(true, StatusCode.LOGINERROR, "验证失败");
         }
@@ -34,8 +34,8 @@ public class UserController {
     @GetMapping("/info")
     public Result getInfo(@RequestParam String token) {
         System.out.println("getInfo...");
-        UserDTO UserDTO = userService.getInfo(token);
-        return new Result(true, StatusCode.OK, "验证成功", UserDTO);
+        UserDTO userDTO = userService.getInfo(token);
+        return new Result(true, StatusCode.OK, "验证成功", userDTO);
     }
 
     @PostMapping("/logout")

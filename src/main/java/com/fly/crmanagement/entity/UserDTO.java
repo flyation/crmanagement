@@ -11,7 +11,6 @@ import java.util.List;
  */
 @Data
 public class UserDTO {
-    @TableId(type = IdType.AUTO)
     private Integer id;                 //主键
     private String username;            //用户名
     private String name;                //姓名

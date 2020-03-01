@@ -1,28 +1,26 @@
 package com.fly.crmanagement;
 
-import com.fly.crmanagement.dao.ClassroomMapper;
-import com.fly.crmanagement.entity.Classroom;
-import org.junit.jupiter.api.Test;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.annotation.Resource;
-import java.util.List;
+import java.util.Date;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
 class CrmanagementApplicationTests {
 
-    @Resource
-    private ClassroomMapper classroomMapper;
-
-    @Test
-    void contextLoads() {
-        StringBuilder firstName = new StringBuilder("明德楼".substring(0,1));
-        String s = new String(firstName);
-        System.out.println("s = " + s);
+    public static void main(String[] args) {
+        JwtBuilder builder = Jwts.builder()
+                .setId("888").setSubject("小白")
+                .setIssuedAt(new Date())
+                .signWith(SignatureAlgorithm.HS256, "crmanagement");
+        System.out.println(builder.compact());
+//        JwtUtil jwtUtil = new JwtUtil();
+//        String jwt = jwtUtil.createJWT("123", "username", "admin");
+//        System.out.println(jwt);
     }
-
 }

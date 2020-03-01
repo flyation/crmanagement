@@ -38,6 +38,7 @@ public class CheckService {
         Record record = new Record();
         record.setTime2(LocalDateTime.now());
         if (flag) {
+            // 通过
             record.setChecked("通过");
             reserveMapper.update(record, wrapper);
 
@@ -52,6 +53,7 @@ public class CheckService {
             scheduleMapper.update(schedule, wrapper1);
             return "已通过";
         } else {
+            // 否决
             record.setChecked("否决");
             reserveMapper.update(record, wrapper);
             return "已否决";

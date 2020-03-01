@@ -5,6 +5,8 @@ import com.fly.crmanagement.dao.UserMapper;
 import com.fly.crmanagement.entity.User;
 import com.fly.crmanagement.entity.UserDTO;
 import com.fly.crmanagement.util.FlyUtil;
+import com.fly.crmanagement.util.JwtUtil;
+import io.jsonwebtoken.Claims;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,20 +22,34 @@ public class UserService {
     @Resource
     private UserMapper userMapper;
 
-    public User login(User user) {
+    @Resource
+    private JwtUtil jwtUtil;
+
+    public UserDTO login(User user) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.eq("username", user.getUsername());
         wrapper.eq("password", user.getPassword());
-        return userMapper.selectOne(wrapper);
+        User userLogin = userMapper.selectOne(wrapper);
+        if (null != userLogin) {
+            String token = jwtUtil.createJWT(userLogin.getId().toString(), userLogin.getUsername(), userLogin.getRole());
+            UserDTO userDTO = FlyUtil.User2UserDTO(userLogin);
+            userDTO.setToken(token);
+            return userDTO;
+        } else {
+            return null;
+        }
     }
 
     public UserDTO getInfo(String token) {
-        // todo 通过token验证用户，再在数据库中查询用户的权限
-        QueryWrapper<User> wrapper = new QueryWrapper<>();
-        wrapper.eq("token", token);
-        User user = userMapper.selectOne(wrapper);
-
-        UserDTO userDTO = FlyUtil.User2UserDTO(user);
-        return userDTO;
+        //通过token验证用户，再在数据库中查询用户的权限
+        Claims claims = jwtUtil.parseJWT(token);
+        String id = claims.getId();
+        if (null != id) {
+            User user = userMapper.selectById(Integer.parseInt(id));
+            UserDTO userDTO = FlyUtil.User2UserDTO(user);
+            return userDTO;
+        } else {
+            return null;
+        }
     }
 }

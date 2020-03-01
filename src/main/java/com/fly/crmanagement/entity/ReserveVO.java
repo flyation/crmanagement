@@ -18,6 +18,5 @@ public class ReserveVO {
     private Boolean course4;    //第4节课
 
     private Integer capacity;   //教室容量
-    private String type;        //教室类型
     private String building;    //教学楼
 }

@@ -16,4 +16,8 @@ public class Schedule {
     private Boolean course2;    //第2节课
     private Boolean course3;    //第3节课
     private Boolean course4;    //第4节课
+    private Integer number1;    //第1节课人数
+    private Integer number2;    //第2节课人数
+    private Integer number3;    //第3节课人数
+    private Integer number4;    //第4节课人数
 }

@@ -4,7 +4,6 @@ import com.fly.crmanagement.entity.Record;
 import com.fly.crmanagement.entity.Schedule;
 import com.fly.crmanagement.entity.User;
 import com.fly.crmanagement.entity.UserDTO;
-import jdk.nashorn.internal.runtime.events.RecompilationEvent;
 
 import java.util.ArrayList;
 
@@ -42,7 +41,23 @@ public class FlyUtil {
         return;
     }
 
-    //撤销预约时
+    // 预约座位
+    public static void Record2ScheduleBySeat (Record record, Schedule schedule) {
+        if (record.getCourse1()) {
+            schedule.setNumber1(schedule.getNumber1() + 1);
+        }
+        if (record.getCourse2()) {
+            schedule.setNumber2(schedule.getNumber2() + 1);
+        }
+        if (record.getCourse3()) {
+            schedule.setNumber3(schedule.getNumber3() + 1);
+        }
+        if (record.getCourse4()) {
+            schedule.setNumber4(schedule.getNumber4() + 1);
+        }
+    }
+
+    //撤销预约时（预约教室）
     public static void Record2ScheduleCancel (Record record, Schedule schedule) {
         if (record.getCourse1()) {
             schedule.setCourse1(false);
@@ -56,6 +71,21 @@ public class FlyUtil {
         if (record.getCourse4()) {
             schedule.setCourse4(false);
         }
-        return;
+    }
+
+    //撤销预约时（预约座位）
+    public static void Record2ScheduleCancelBySeat (Record record, Schedule schedule) {
+        if (record.getCourse1()) {
+            schedule.setNumber1(schedule.getNumber1() - 1);
+        }
+        if (record.getCourse2()) {
+            schedule.setNumber2(schedule.getNumber2() - 1);
+        }
+        if (record.getCourse3()) {
+            schedule.setNumber3(schedule.getNumber3() - 1);
+        }
+        if (record.getCourse4()) {
+            schedule.setNumber4(schedule.getNumber4() - 1);
+        }
     }
 }
