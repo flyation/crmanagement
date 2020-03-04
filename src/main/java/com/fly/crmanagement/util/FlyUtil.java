@@ -1,9 +1,6 @@
 package com.fly.crmanagement.util;
 
-import com.fly.crmanagement.entity.Record;
-import com.fly.crmanagement.entity.Schedule;
-import com.fly.crmanagement.entity.User;
-import com.fly.crmanagement.entity.UserDTO;
+import com.fly.crmanagement.entity.*;
 
 import java.util.ArrayList;
 
@@ -41,7 +38,7 @@ public class FlyUtil {
         return;
     }
 
-    // 预约座位
+    // 撤销预约时（预约座位）
     public static void Record2ScheduleBySeat (Record record, Schedule schedule) {
         if (record.getCourse1()) {
             schedule.setNumber1(schedule.getNumber1() + 1);
@@ -87,5 +84,17 @@ public class FlyUtil {
         if (record.getCourse4()) {
             schedule.setNumber4(schedule.getNumber4() - 1);
         }
+    }
+
+    //转换教室类的excel表映射实体和数据库映射实体
+    public static Classroom ClassroomExcel2Classroom (ClassroomExcel excel) {
+        Classroom classroom = new Classroom();
+        classroom.setName(excel.getName());
+        classroom.setBuilding(excel.getBuilding());
+        classroom.setFloor(excel.getFloor());
+        classroom.setCapacity(excel.getCapacity());
+        classroom.setType(excel.getType());
+        classroom.setRepair(excel.getRepair());
+        return classroom;
     }
 }

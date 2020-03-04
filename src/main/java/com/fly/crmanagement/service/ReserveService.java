@@ -54,8 +54,9 @@ public class ReserveService {
         record.setTime1(LocalDateTime.now());
         record.setTime2(LocalDateTime.now());
         record.setTime3(LocalDateTime.now());
-        record.setType(true);
+        record.setType(false);
         record.setChecked("通过");
+        record.setReason("预约教室");
         reserveMapper.insert(record);
 
         //锁定教室日程表里选中的时间段
@@ -66,14 +67,6 @@ public class ReserveService {
         QueryWrapper<Schedule> wrapper1 = new QueryWrapper<>();
         wrapper1.eq("id", schedule.getId());
         scheduleMapper.update(schedule, wrapper1);
-    }
-
-    public void reserveRoom(Record record, String token) {
-        record.setUid(Integer.parseInt(jwtUtil.parseJWT(token).getId()));
-        record.setTime1(LocalDateTime.now());
-        record.setTime2(LocalDateTime.now());
-        record.setTime3(LocalDateTime.now());
-        reserveMapper.insert(record);
     }
 
     public IPage<RecordVO> getRecordList(int page, int size, String token) {
@@ -94,7 +87,7 @@ public class ReserveService {
         Record recordInDB = reserveMapper.selectById(id);
         Schedule schedule = scheduleMapper.selectByCidAndDate(recordInDB.getCid(), recordInDB.getDate());
         //判断预约类型
-        if (recordInDB.getType()) {
+        if (!recordInDB.getType()) {
             //预约座位
             //更新课程时间段
             FlyUtil.Record2ScheduleCancelBySeat(recordInDB, schedule);

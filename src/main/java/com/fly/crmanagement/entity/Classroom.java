@@ -1,11 +1,12 @@
 package com.fly.crmanagement.entity;
 
+import com.alibaba.excel.metadata.BaseRowModel;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 /**
- * 教室信息
+ * 教室信息（数据库映射实体）
  */
 @Data
 public class Classroom {

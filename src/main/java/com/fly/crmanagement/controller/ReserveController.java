@@ -40,7 +40,7 @@ public class ReserveController {
     }
 
     /**
-     * 提交预约
+     * 提交预约（预约教室）
      */
     @PostMapping(value = "/apply")
     public Result reserve(@RequestBody Record record, @RequestHeader("X-token") String token) {
