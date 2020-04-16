@@ -16,6 +16,6 @@ public class Classroom {
     private String building;    //教学楼
     private Integer floor;      //所在楼层
     private Integer capacity;   //教室容量
-    private Boolean type;        //预约类型
+    private Boolean type;       //预约类型
     private Boolean repair;     //是否报修
 }

@@ -16,17 +16,17 @@ import java.time.LocalDateTime;
 @TableName("reserve")
 public class Record {
     @TableId(type = IdType.AUTO)
-    private Integer id;         //主键
-    private Integer uid;        //用户id
-    private Integer cid;        //教室id
-    private LocalDate date;     //使用日期
-    private Boolean course1;    //第1节课
-    private Boolean course2;    //第2节课
-    private Boolean course3;    //第3节课
-    private Boolean course4;    //第4节课
-    private String reason;      //申请原因
-    private Boolean cancel;     //是否撤销
-    private String checked;     //审核状态(未审核，已通过，已拒绝)
+    private Integer id;          //主键
+    private Integer uid;         //用户id
+    private Integer cid;         //教室id
+    private LocalDate date;      //使用日期
+    private Boolean course1;     //第1节课
+    private Boolean course2;     //第2节课
+    private Boolean course3;     //第3节课
+    private Boolean course4;     //第4节课
+    private String reason;       //申请原因
+    private Boolean cancel;      //是否撤销
+    private String checked;      //审核状态(未审核，已通过，已拒绝)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime time1; //下单时间
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
