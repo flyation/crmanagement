@@ -1,5 +1,7 @@
 package com.fly.crmanagement.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -9,6 +11,7 @@ import java.time.LocalDate;
  */
 @Data
 public class Schedule {
+    @TableId(type = IdType.AUTO)
     private Integer id;         //主键
     private Integer cid;        //教室id
     private LocalDate date;     //使用日期

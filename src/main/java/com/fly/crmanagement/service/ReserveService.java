@@ -45,6 +45,7 @@ public class ReserveService {
         record.setTime1(LocalDateTime.now());
         record.setTime2(LocalDateTime.now());
         record.setTime3(LocalDateTime.now());
+        record.setType(true);
         reserveMapper.insert(record);
     }
 
