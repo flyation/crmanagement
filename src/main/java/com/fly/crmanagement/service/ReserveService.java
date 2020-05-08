@@ -95,7 +95,6 @@ public class ReserveService {
             QueryWrapper<Schedule> wrapper1 = new QueryWrapper<>();
             wrapper1.eq("id", schedule.getId());
             scheduleMapper.update(schedule, wrapper1);
-            return update == 1;
         } else {
             //预约教室
             //更新课程时间段
@@ -103,7 +102,7 @@ public class ReserveService {
             QueryWrapper<Schedule> wrapper1 = new QueryWrapper<>();
             wrapper1.eq("id", schedule.getId());
             scheduleMapper.update(schedule, wrapper1);
-            return update == 1;
         }
+        return update == 1;
     }
 }

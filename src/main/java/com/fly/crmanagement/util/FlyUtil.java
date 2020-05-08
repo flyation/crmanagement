@@ -3,6 +3,7 @@ package com.fly.crmanagement.util;
 import com.fly.crmanagement.entity.*;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class FlyUtil {
 
@@ -96,5 +97,20 @@ public class FlyUtil {
         classroom.setType(excel.getType());
         classroom.setRepair(excel.getRepair());
         return classroom;
+    }
+
+    /**
+     * 发放身份码（四位随机数字）
+     * @param
+     * @return
+     */
+    public static String randomIDCodeOf4 () {
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 4; i++) {
+            int number = random.nextInt(10);
+            sb.append(number);
+        }
+        return sb.toString();
     }
 }

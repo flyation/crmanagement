@@ -17,7 +17,7 @@ import java.util.Random;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/classroomFactory")
+@RequestMapping("/factory")
 public class ClassroomFactory {
 
     @Resource
