@@ -48,13 +48,13 @@ public class UserController {
     @GetMapping("/all")
     public Result getUserList() {
         List<User> userList = userService.getUserList();
-        return new Result(true, StatusCode.OK, "查询所有用户", userList);
+        return new Result(true, StatusCode.OK, "查询所有用户成功", userList);
     }
 
     @GetMapping("/{uid}")
     public Result getUser(@PathVariable("uid") int uid) {
         User user = userService.getUser(uid);
-        return new Result(true, StatusCode.OK, "查询所有用户", user);
+        return new Result(true, StatusCode.OK, "查询用户成功", user);
     }
 
     @PostMapping("/update")
