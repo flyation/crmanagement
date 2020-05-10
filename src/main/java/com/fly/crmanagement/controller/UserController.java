@@ -8,6 +8,7 @@ import com.fly.crmanagement.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * vueAdmin-template-master 登录模块
@@ -42,5 +43,23 @@ public class UserController {
                 "    \"code\": 20000,\n" +
                 "    \"data\": \"success\"\n" +
                 "}";
+    }
+
+    @GetMapping("/all")
+    public Result getUserList() {
+        List<User> userList = userService.getUserList();
+        return new Result(true, StatusCode.OK, "查询所有用户", userList);
+    }
+
+    @GetMapping("/{uid}")
+    public Result getUser(@PathVariable("uid") int uid) {
+        User user = userService.getUser(uid);
+        return new Result(true, StatusCode.OK, "查询所有用户", user);
+    }
+
+    @PostMapping("/update")
+    public Result getUser(@RequestBody User user) {
+        userService.updateUser(user);
+        return new Result(true, StatusCode.OK, "更新用户信息成功", user);
     }
 }

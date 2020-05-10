@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 用户service
@@ -51,5 +52,17 @@ public class UserService {
         } else {
             return null;
         }
+    }
+
+    public List<User> getUserList() {
+        return userMapper.selectList(null);
+    }
+
+    public User getUser(int uid) {
+        return userMapper.selectById(uid);
+    }
+
+    public void updateUser(User user) {
+        userMapper.updateById(user);
     }
 }
