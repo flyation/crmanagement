@@ -1,7 +1,10 @@
 package com.fly.crmanagement.util;
 
 import com.fly.crmanagement.entity.*;
+import org.springframework.util.StringUtils;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -97,6 +100,17 @@ public class FlyUtil {
         classroom.setType(excel.getType());
         classroom.setRepair(excel.getRepair());
         return classroom;
+    }
+
+    public static Schedule ScheduleExcel2Schedule(ScheduleExcel excel) {
+        Schedule schedule = new Schedule();
+        schedule.setCid(excel.getCid());
+        schedule.setDate(LocalDate.parse(excel.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        schedule.setCourse1(!StringUtils.isEmpty(excel.getCourse1()));
+        schedule.setCourse2(!StringUtils.isEmpty(excel.getCourse2()));
+        schedule.setCourse3(!StringUtils.isEmpty(excel.getCourse3()));
+        schedule.setCourse4(!StringUtils.isEmpty(excel.getCourse4()));
+        return schedule;
     }
 
     /**

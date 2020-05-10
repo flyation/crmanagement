@@ -2,13 +2,17 @@ package com.fly.crmanagement.controller;
 
 import com.fly.crmanagement.entity.Classroom;
 import com.fly.crmanagement.entity.ClassroomExcel;
+import com.fly.crmanagement.entity.Schedule;
+import com.fly.crmanagement.entity.ScheduleExcel;
 import com.fly.crmanagement.service.RoomIService;
+import com.fly.crmanagement.service.ScheduleIService;
 import com.fly.crmanagement.util.EasyExcelUtil;
 import com.fly.crmanagement.util.FlyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +27,9 @@ public class UploadController {
 
     @Autowired
     RoomIService roomIService;
+
+    @Resource
+    ScheduleIService scheduleIService;
 
     @PostMapping("/classroom")
     public void uploadClassroom(@RequestParam("file") MultipartFile excelFile) {
@@ -48,5 +55,23 @@ public class UploadController {
             }
         }
         roomIService.saveBatch(classrooms);
+    }
+
+    @PostMapping("/schedule")
+    public void uploadSchedule(@RequestParam("file") MultipartFile excelFile) {
+        System.out.println(excelFile.getOriginalFilename());
+        List<Object> list = null;
+        try {
+            list = EasyExcelUtil.readExcel(excelFile, new ScheduleExcel(),1,1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        List<Schedule> schedules = new ArrayList<>();
+        if(list != null && list.size() > 0){
+            for(Object o : list){
+                schedules.add(FlyUtil.ScheduleExcel2Schedule((ScheduleExcel) o));
+            }
+        }
+        scheduleIService.saveBatch(schedules);
     }
 }
