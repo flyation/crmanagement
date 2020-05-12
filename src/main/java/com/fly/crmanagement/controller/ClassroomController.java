@@ -51,7 +51,6 @@ public class ClassroomController {
      */
     @PostMapping
     public Result save(@RequestBody Classroom classroom) {
-        System.out.println(classroom);
         classroomService.save(classroom);
         return new Result(true, StatusCode.OK, "添加成功");
     }

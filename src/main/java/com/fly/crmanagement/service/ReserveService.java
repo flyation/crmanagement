@@ -31,12 +31,10 @@ public class ReserveService {
     private JwtUtil jwtUtil;
 
     public IPage<ScheduleVO> getScheduleRoomList(int page, int size, ReserveVO vo) {
-        System.out.println(vo.getDate());
         return reserveMapper.getScheduleRoomList(new Page(page, size), vo);
     }
 
     public IPage<ScheduleVO> getScheduleSeatList(int page, int size, ReserveVO vo) {
-        System.out.println(vo.getDate());
         return reserveMapper.getScheduleSeatList(new Page(page, size), vo);
     }
 
