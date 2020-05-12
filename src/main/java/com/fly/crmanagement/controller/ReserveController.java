@@ -48,6 +48,15 @@ public class ReserveController {
         return new Result(true, StatusCode.OK, "提交成功，请等待审核");
     }
 
+//    /**
+//     * 提交预约（预约教室），通过二维码
+//     */
+//    @PostMapping(value = "/apply")
+//    public Result reserveByQR(@RequestBody Record record) {
+//        reserveService.reserveByQR(record);
+//        return new Result(true, StatusCode.OK, "提交成功，请等待审核");
+//    }
+
     /**
      * 预约座位
      */

@@ -47,6 +47,16 @@ public class ReserveService {
         reserveMapper.insert(record);
     }
 
+    public void reserve(Record record) {
+        // TODO: 2020/5/6  设置用户id
+//        record.setUid();
+        record.setTime1(LocalDateTime.now());
+        record.setTime2(LocalDateTime.now());
+        record.setTime3(LocalDateTime.now());
+        record.setType(true);
+        reserveMapper.insert(record);
+    }
+
     // 预约座位，无需审核，直接通过
     public void reserveSeat(Record record, String token) {
         record.setUid(Integer.parseInt(jwtUtil.parseJWT(token).getId()));

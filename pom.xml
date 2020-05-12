@@ -92,13 +92,13 @@
             <version>1.1.2-beta5</version>
         </dependency>
 
-        <!-- 二维码 -->
-        <!-- https://mvnrepository.com/artifact/com.google.zxing/core -->
-        <dependency>
-            <groupId>com.google.zxing</groupId>
-            <artifactId>core</artifactId>
-            <version>3.3.0</version>
-        </dependency>
+<!--        &lt;!&ndash; 二维码 &ndash;&gt;-->
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.google.zxing/core &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>com.google.zxing</groupId>-->
+<!--            <artifactId>core</artifactId>-->
+<!--            <version>3.3.0</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
